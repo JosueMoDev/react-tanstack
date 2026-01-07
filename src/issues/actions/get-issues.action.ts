@@ -1,7 +1,7 @@
 import { gitHubApi } from "../../api";
-import { GitHubIssues } from "../interfaces";
+import { GitHubIssue } from "../interfaces";
 
-export const getIssues = async (): Promise<GitHubIssues[]> => {
-  const { data } = await gitHubApi.get<GitHubIssues[]>("/issues");
+export const getIssues = async (): Promise<GitHubIssue[]> => {
+  const { data } = await gitHubApi.get<GitHubIssue[]>("/issues");
   return data;
 };

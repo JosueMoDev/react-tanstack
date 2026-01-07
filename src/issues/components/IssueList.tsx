@@ -1,6 +1,10 @@
-import { IssueItem } from './IssueItem';
-
-export const IssueList = () => {
+import { FC } from "react";
+import { GitHubIssue } from "../interfaces";
+import { IssueItem } from "./IssueItem";
+interface Props {
+  issues: GitHubIssue[];
+}
+export const IssueList: FC<Props> = ({ issues }) => {
   return (
     <>
       {/* Botones de All, Open, Closed */}
@@ -12,8 +16,8 @@ export const IssueList = () => {
 
       {/* Lista de issues */}
       <div className="mt-4">
-        {[1, 2, 3].map((issue) => (
-          <IssueItem key={issue} />
+        {issues.map((issue) => (
+          <IssueItem key={issue.id} issue={issue} />
         ))}
       </div>
     </>

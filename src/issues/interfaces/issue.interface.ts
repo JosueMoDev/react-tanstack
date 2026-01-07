@@ -1,4 +1,4 @@
-export interface GitHubIssues {
+export interface GitHubIssue {
   url: string;
   repository_url: string;
   labels_url: string;
@@ -82,6 +82,7 @@ export interface Reactions {
 
 export enum State {
   Open = "open",
+  Close = "close",
 }
 
 export interface SubIssuesSummary {

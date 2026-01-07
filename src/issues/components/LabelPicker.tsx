@@ -3,7 +3,6 @@ import { useGitHubLabels } from "../hooks/useGitHubLabes";
 
 export const LabelPicker = () => {
   const { labelsQuery } = useGitHubLabels();
-  console.log(labelsQuery.data);
   if (labelsQuery.isLoading)
     return (
       <div className="flex items-center justify-center h-52">

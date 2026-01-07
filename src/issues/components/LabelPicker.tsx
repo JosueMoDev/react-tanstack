@@ -1,5 +1,5 @@
 import { LoadingSpinner } from "../../shared";
-import { useGitHubLabels } from "../hooks/useGitHubLabes";
+import { useGitHubLabels } from "../hooks";
 
 export const LabelPicker = () => {
   const { labelsQuery } = useGitHubLabels();

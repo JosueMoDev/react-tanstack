@@ -1,7 +1,7 @@
 import { LoadingSpinner } from "../../shared";
 import { IssueList } from "../components/IssueList";
 import { LabelPicker } from "../components/LabelPicker";
-import { useGitHubIssues } from "../hooks/useGitHubIssues";
+import { useGitHubIssues } from "../hooks";
 
 export const ListView = () => {
   const { issuesQuery } = useGitHubIssues();

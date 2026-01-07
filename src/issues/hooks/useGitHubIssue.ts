@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { getIssue } from "../actions";
+import { getIssue, getIssueComments } from "../actions";
 
 export const useGitHubIssue = (issueNumber: number) => {
   const issueQuery = useQuery({
@@ -9,7 +9,15 @@ export const useGitHubIssue = (issueNumber: number) => {
     retry: false,
   });
 
+  const issueCommentsQuery = useQuery({
+    queryKey: ["issues", issueNumber, "comments"],
+    queryFn: () => getIssueComments(issueNumber),
+    staleTime: 1000 * 60 * 60,
+    retry: false,
+  });
+
   return {
     issueQuery,
+    issueCommentsQuery,
   };
 };

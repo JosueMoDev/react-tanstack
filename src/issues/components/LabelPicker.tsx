@@ -1,33 +1,26 @@
-import { useQuery } from "@tanstack/react-query";
-import { sleep } from "../../helpers";
+import { LoadingSpinner } from "../../shared";
+import { useGitHubLabels } from "../hooks/useGitHubLabes";
 
-const getLabels = async (): Promise<unknown[]> => {
-  await sleep(1500);
-  const resp = await fetch(
-    "https://api.github.com/repos/facebook/react/labels"
-  ).then((r) => r.json());
-  console.log(resp);
-  return resp;
-};
 export const LabelPicker = () => {
-  const labelsQuery = useQuery({
-    queryKey: ["labels"],
-    queryFn: getLabels,
-  });
+  const { labelsQuery } = useGitHubLabels();
+  console.log(labelsQuery.data);
   if (labelsQuery.isLoading)
     return (
-      <div>
-        <p>Espere por favor!!...</p>
+      <div className="flex items-center justify-center h-52">
+        <LoadingSpinner />
       </div>
     );
   return (
-    <>
-      <span
-        className="px-2 py-1 rounded-full text-xs font-semibold hover:bg-slate-800 cursor-pointer"
-        style={{ border: `1px solid #ffccd3`, color: "#ffccd3" }}
-      >
-        Primary
-      </span>
-    </>
+    <div className="flex flex-wrap justify-center gap-2">
+      {labelsQuery.data?.map((label) => (
+        <span
+          key={label.id}
+          className="px-2 py-1 text-xs font-semibold rounded-full cursor-pointer animate-fadeIn hover:bg-slate-800"
+          style={{ border: `1px solid #${label.color}` }}
+        >
+          {label.name}
+        </span>
+      ))}
+    </div>
   );
 };

@@ -31,7 +31,7 @@ export const IssueItem: FC<Props> = ({ issue }) => {
       onMouseEnter={prefetchData}
       className="flex items-center px-2 py-3 mb-5 border rounded-md bg-slate-900 hover:bg-slate-800"
     >
-      {issue.state === State.Close ? (
+      {issue.state === State.Closed ? (
         <FiCheckCircle size={30} color="green" />
       ) : (
         <FiInfo size={30} color="red" className="min-w-10" />

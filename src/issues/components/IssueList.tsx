@@ -24,8 +24,8 @@ export const IssueList: FC<Props> = ({ issues, onStateChange, state }) => {
           Open
         </button>
         <button
-          onClick={() => onStateChange(State.Close)}
-          className={`btn ${State.Close === state ? "active" : ""} `}
+          onClick={() => onStateChange(State.Closed)}
+          className={`btn ${State.Closed === state ? "active" : ""} `}
         >
           Closed
         </button>

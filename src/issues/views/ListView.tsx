@@ -6,8 +6,10 @@ import { useGitHubIssues } from "../hooks";
 import { State } from "../interfaces";
 
 export const ListView = () => {
-  const { issuesQuery } = useGitHubIssues();
   const [state, setState] = useState(State.All);
+  const { issuesQuery } = useGitHubIssues({
+    state: state,
+  });
   const issues = issuesQuery.data ?? [];
   return (
     <div className="grid grid-cols-1 mt-5 sm:grid-cols-3">

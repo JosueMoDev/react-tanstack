@@ -1,7 +1,12 @@
+import { FC } from "react";
 import { LoadingSpinner } from "../../shared";
 import { useGitHubLabels } from "../hooks";
 
-export const LabelPicker = () => {
+interface Props {
+  labels: string[];
+  onSelectedLabel: (label: string) => void;
+}
+export const LabelPicker: FC<Props> = ({ labels, onSelectedLabel }) => {
   const { labelsQuery } = useGitHubLabels();
   if (labelsQuery.isLoading)
     return (
@@ -14,7 +19,10 @@ export const LabelPicker = () => {
       {labelsQuery.data?.map((label) => (
         <span
           key={label.id}
-          className="px-2 py-1 text-xs font-semibold rounded-full cursor-pointer animate-fadeIn hover:bg-slate-800"
+          onClick={() => onSelectedLabel(label.name)}
+          className={`px-2 py-1 text-xs font-semibold rounded-full cursor-pointer animate-fadeIn hover:bg-slate-800 ${
+            labels.includes(label.name) ? "selected-label" : ""
+          }`}
           style={{ border: `1px solid #${label.color}` }}
         >
           {label.name}

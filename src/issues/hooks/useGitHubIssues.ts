@@ -4,11 +4,12 @@ import { State } from "../interfaces";
 
 interface Props {
   state: State;
+  labels: string[];
 }
-export const useGitHubIssues = ({ state }: Props) => {
+export const useGitHubIssues = ({ state, labels }: Props) => {
   const issuesQuery = useQuery({
-    queryKey: ["issues", { state }],
-    queryFn: () => getIssues(state),
+    queryKey: ["issues", { state, labels }],
+    queryFn: () => getIssues(state, labels),
     staleTime: 1000 * 60 * 60,
   });
 

@@ -72,6 +72,7 @@ export interface PullRequest {
 export enum State {
   Open = "open",
   Close = "close",
+  All = "all",
 }
 
 export interface SubIssuesSummary {
